@@ -540,10 +540,10 @@ export interface ApiTuyenDungTuyenDung extends Struct.CollectionTypeSchema {
       'api::tuyen-dung.tuyen-dung'
     > &
       Schema.Attribute.Private;
-    mo_ta_cong_viec: Schema.Attribute.JSON;
+    mo_ta_cong_viec: Schema.Attribute.RichText;
     muc_luong: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    quyen_loi: Schema.Attribute.JSON;
+    quyen_loi: Schema.Attribute.RichText;
     slug: Schema.Attribute.UID<'vi_tri'>;
     so_luong_can_tuyen: Schema.Attribute.Integer;
     trang_thai: Schema.Attribute.Enumeration<
@@ -554,7 +554,7 @@ export interface ApiTuyenDungTuyenDung extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     vi_tri: Schema.Attribute.String & Schema.Attribute.Required;
-    yeu_cau: Schema.Attribute.JSON;
+    yeu_cau: Schema.Attribute.RichText;
   };
 }
 

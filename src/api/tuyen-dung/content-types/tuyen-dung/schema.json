@@ -24,13 +24,13 @@
       "type": "string"
     },
     "mo_ta_cong_viec": {
-      "type": "json"
+      "type": "richtext"
     },
     "yeu_cau": {
-      "type": "json"
+      "type": "richtext"
     },
     "quyen_loi": {
-      "type": "json"
+      "type": "richtext"
     },
     "han_nop_ho_so": {
       "type": "date"
