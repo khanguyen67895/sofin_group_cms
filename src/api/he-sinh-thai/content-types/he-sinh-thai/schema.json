@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "he_sinh_thais",
+  "info": {
+    "singularName": "he-sinh-thai",
+    "pluralName": "he-sinh-thais",
+    "displayName": "Hệ Sinh Thái",
+    "description": "Quản lý các sản phẩm/dịch vụ trong hệ sinh thái"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ten": {
+      "type": "string",
+      "required": true
+    },
+    "mo_ta": {
+      "type": "text"
+    },
+    "noi_dung_chi_tiet": {
+      "type": "richtext"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "anh_banner": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "website": {
+      "type": "string"
+    },
+    "danh_muc": {
+      "type": "enumeration",
+      "enum": ["cong-nghe", "tai-chinh", "giao-duc", "y-te", "bat-dong-san", "khac"],
+      "default": "khac"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "ten"
+    },
+    "thu_tu_hien_thi": {
+      "type": "integer",
+      "default": 0
+    },
+    "noi_bat": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tuyen_dungs",
+  "info": {
+    "singularName": "tuyen-dung",
+    "pluralName": "tuyen-dungs",
+    "displayName": "Tuyển Dụng",
+    "description": "Quản lý tin tuyển dụng"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "vi_tri": {
+      "type": "string",
+      "required": true
+    },
+    "dia_diem": {
+      "type": "string",
+      "required": true
+    },
+    "muc_luong": {
+      "type": "string"
+    },
+    "mo_ta_cong_viec": {
+      "type": "json"
+    },
+    "yeu_cau": {
+      "type": "json"
+    },
+    "quyen_loi": {
+      "type": "json"
+    },
+    "han_nop_ho_so": {
+      "type": "date"
+    },
+    "trang_thai": {
+      "type": "enumeration",
+      "enum": ["dang-tuyen", "da-du-nguoi", "tam-dung"],
+      "default": "dang-tuyen"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "vi_tri"
+    },
+    "so_luong_can_tuyen": {
+      "type": "integer"
+    },
+    "kinh_nghiem": {
+      "type": "string"
+    },
+    "hinh_thuc_lam_viec": {
+      "type": "enumeration",
+      "enum": ["toan-thoi-gian", "ban-thoi-gian", "thu-viec", "thuc-tap"],
+      "default": "toan-thoi-gian"
+    }
+  }
+}
