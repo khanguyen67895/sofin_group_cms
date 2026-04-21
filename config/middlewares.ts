@@ -9,9 +9,9 @@ const config: Core.Config.Middlewares = [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
-          'media-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
+          'connect-src': ["'self'", 'https:', 'http:'],
+          'img-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com', '*.unsplash.com', 'images.unsplash.com', '*'],
+          'media-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com', '*.unsplash.com', '*'],
           upgradeInsecureRequests: null,
         },
       },
