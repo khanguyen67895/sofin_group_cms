@@ -1,12 +1,59 @@
 import type { Core } from '@strapi/strapi';
 
+const RAW_MIME_TYPES = new Set([
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+]);
+
 export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
     await seedAdminAccount(strapi);
+    await setPublicPermissions(strapi);
+    patchUploadProvider(strapi);
   },
 };
+
+function patchUploadProvider(strapi: Core.Strapi) {
+  const provider = (strapi.plugin('upload') as any).provider;
+  if (!provider) return;
+
+  for (const method of ['upload', 'uploadStream'] as const) {
+    const original = provider[method].bind(provider);
+    provider[method] = (file: any, customConfig: any = {}) => {
+      const extra = RAW_MIME_TYPES.has(file.mime) ? { resource_type: 'raw', access_mode: 'public' } : {};
+      return original(file, { ...extra, ...customConfig });
+    };
+  }
+}
+
+async function setPublicPermissions(strapi: Core.Strapi) {
+  const publicRole = await strapi.db.query('plugin::users-permissions.role').findOne({
+    where: { type: 'public' },
+  });
+
+  if (!publicRole) return;
+
+  const existing = await strapi.db.query('plugin::users-permissions.permission').findOne({
+    where: {
+      action: 'api::don-ung-tuyen.don-ung-tuyen.create',
+      role: publicRole.id,
+    },
+  });
+
+  if (existing) return;
+
+  await strapi.db.query('plugin::users-permissions.permission').create({
+    data: {
+      action: 'api::don-ung-tuyen.don-ung-tuyen.create',
+      role: publicRole.id,
+    },
+  });
+
+  strapi.log.info('Public create permission set for don-ung-tuyen');
+}
 
 async function seedAdminAccount(strapi: Core.Strapi) {
   const adminEmail = process.env.ADMIN_EMAIL;

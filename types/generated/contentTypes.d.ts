@@ -430,6 +430,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiDonUngTuyenDonUngTuyen extends Struct.CollectionTypeSchema {
+  collectionName: 'don_ung_tuyens';
+  info: {
+    description: 'Qu\u1EA3n l\u00FD \u0111\u01A1n \u1EE9ng tuy\u1EC3n t\u1EEB \u1EE9ng vi\u00EAn';
+    displayName: '\u0110\u01A1n \u1EE8ng Tuy\u1EC3n';
+    pluralName: 'don-ung-tuyens';
+    singularName: 'don-ung-tuyen';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cv: Schema.Attribute.Media<'files'>;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    ghi_chu: Schema.Attribute.Text;
+    ho_ten: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::don-ung-tuyen.don-ung-tuyen'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    so_dien_thoai: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    vi_tri_ung_tuyen: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiHeSinhThaiHeSinhThai extends Struct.CollectionTypeSchema {
   collectionName: 'he_sinh_thais';
   info: {
@@ -1069,6 +1103,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::don-ung-tuyen.don-ung-tuyen': ApiDonUngTuyenDonUngTuyen;
       'api::he-sinh-thai.he-sinh-thai': ApiHeSinhThaiHeSinhThai;
       'api::tin-tuc.tin-tuc': ApiTinTucTinTuc;
       'api::tuyen-dung.tuyen-dung': ApiTuyenDungTuyenDung;

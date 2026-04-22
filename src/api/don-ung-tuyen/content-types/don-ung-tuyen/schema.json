@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "don_ung_tuyens",
+  "info": {
+    "singularName": "don-ung-tuyen",
+    "pluralName": "don-ung-tuyens",
+    "displayName": "Đơn Ứng Tuyển",
+    "description": "Quản lý đơn ứng tuyển từ ứng viên"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ho_ten": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "so_dien_thoai": {
+      "type": "string",
+      "required": true
+    },
+    "vi_tri_ung_tuyen": {
+      "type": "string",
+      "required": true
+    },
+    "cv": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["files"]
+    },
+    "ghi_chu": {
+      "type": "text"
+    }
+  }
+}
